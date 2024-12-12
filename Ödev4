@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+//kullanıcıdan doğru bir sayı alma for döngüsü
+        Scanner scanner = new Scanner(System.in);
+        int sayi =-1;
+
+        for(;;){
+            System.out.print("Pozitif bir sayı girin:");
+            sayi=scanner.nextInt();
+
+            if(sayi>0){
+                break;
+            }
+            System.out.println("Geçersiz giriş.Lütfen pozitif bir sayı girin");
+        }
+
+        System.out.println("Girdiğiniiz pozitif sayı:"+sayi);
+    }
+}
