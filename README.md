@@ -1,0 +1,2 @@
+# Alparslanuniversty
+Alparslan Üniversitesi / Algoritma
