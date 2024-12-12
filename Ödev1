@@ -1,0 +1,15 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        //1'den 10'a kadar olan sayıların tlamı for döngüsü ile
+        int toplam=0;
+        for(int i=1;i<=10;i++) {
+            toplam += i;
+
+        }
+        System.out.println("1'den 10' kadar olan sayıların toplamı:"+ toplam);
+
+
+    }
+}
