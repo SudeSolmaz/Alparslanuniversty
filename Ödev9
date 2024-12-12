@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+//kullanıcıdan isim alma for döngüsü
+        Scanner scanner=new Scanner(System.in);
+        String isim;
+
+        for(;;){
+            System.out.print("Bir isim girin (çıkmak için 'q' yazın):");
+                    isim=scanner.nextLine();
+
+                    if (!isim.equalsIgnoreCase("q")){
+                        System.out.println("çıkış yapılıyor...");
+                        break;
+                    }
+                    System.out.println("Girdiğiniz isim:"+isim);
+
+
+        }
+    }
+}
