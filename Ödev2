@@ -1,0 +1,14 @@
+public class Main {
+    public static void main(String[] args) {
+        //1'den 10'a kadar olan sayıların toplamı while döngüsü ile
+        int toplam = 0;
+        int sayi = 1;
+
+        while (sayi <= 10) {
+            toplam += sayi;
+            sayi++;          
+        }
+
+        System.out.println("1'den 10'a kadar olan sayıların toplamı: " + toplam);
+    }
+}
