@@ -1,0 +1,17 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        //1'den 10'a kadar olan sayıların do-while döngüsü
+        int toplam=0;
+        int i=1;
+
+        do{
+            toplam +=i;
+            i++;
+        } while (i<=10);
+        System.out.println("1'den 10'a kadar olan sayıların toplamı:"+toplam);
+
+
+    }
+}
