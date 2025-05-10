@@ -1,0 +1,170 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Urun{
+    String isim;
+    double fiyat;
+    int stok;
+
+    public Urun(String isim,double fiyat, int stok) {
+        this.isim=isim;
+        this.fiyat=fiyat;
+        this.stok=stok;
+
+    }
+
+    public void stokEkle(int miktar) {
+        this.stok+=miktar;
+    }
+
+    public void stokCikar(int miktar) {
+        if (miktar <= this.stok) {
+            this.stok -=miktar;
+        }else{
+            System.out.println("Yetersiz stok!");
+        }
+    }
+
+    public String toString() {
+        return "Ürün: " + isim + " | Fiyat: " + fiyat + " TL | Stok: " + stok;
+
+    }
+}
+public class Main {
+    static ArrayList<Urun> urunListesi = new ArrayList<>();
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int secim;
+
+        do{
+            menuGoster();
+            System.out.print("Seçiminiz: ");
+            secim= scanner.nextInt();
+            scanner.nextLine();
+
+            switch (secim) {
+                case 1:
+                    urunEkle();
+                    break;
+                case 2:
+                    urunleriListele();
+                    break;
+                case 3:
+                    urunAra();
+                    break;
+                case 4:
+                    stokGuncelle();
+                    break;
+                case 5:
+                    kritikStokGoster();
+                    break;
+                case 0:
+                    System.out.println("Çıkış yapılıyor...");
+                    break;
+                default:
+                    System.out.println("Geçersiz seçim.");
+
+            }
+            System.out.println();
+        }while (secim !=0);
+    }
+
+    public static void menuGoster() {
+        System.out.println("--- MARKET STOK TAKİP ---");
+        System.out.println("1. Ürün Ekle");
+        System.out.println("2. Ürünleri Listele");
+        System.out.println("3. Ürün Ara");
+        System.out.println("4. Stok Güncelle (Satış / Ekleme)");
+        System.out.println("5. Kritik Stoktaki Ürünler (<5)");
+        System.out.println("0. Çıkış");
+    }
+
+    public static void urunEkle() {
+        System.out.print("Ürün adı: ");
+        String isim = scanner.nextLine();
+        System.out.print("Fiyatı: ");
+        double fiyat = scanner.nextDouble();
+        System.out.print("Stok miktarı: ");
+        int stok= scanner.nextInt();
+        scanner.nextLine();
+
+        Urun yeniUrun = new Urun(isim, fiyat, stok);
+        urunListesi.add(yeniUrun);
+        System.out.println("Ürün başarıyla eklendi.");
+    }
+
+    public static void urunleriListele() {
+        if(urunListesi.isEmpty()){
+            System.out.println("Hiç ürün yok.");
+        }else{
+            System.out.println("--- Ürün Listesi ---");
+            for (Urun u : urunListesi) {
+                System.out.println(u);
+            }
+        }
+    }
+
+    public static void urunAra(){
+        System.out.println("Aranacak ürün adı: ");
+        String aranan = scanner.nextLine().toLowerCase();
+        boolean bulundu = false;
+
+        for (Urun u : urunListesi) {
+            if (u.isim.toLowerCase().contains(aranan)){
+                System.out.println(u);
+                bulundu =true;
+            }
+        }
+
+        if (!bulundu) {
+            System.out.println("Ürün bulunamadı.");
+        }
+    }
+
+    public static void stokGuncelle(){
+        System.out.print("Güncellenecek ürün adı: ");
+        String isim = scanner.nextLine().toLowerCase();
+        Urun secilen = null;
+
+        for (Urun u : urunListesi) {
+            if (u.isim.toLowerCase().equals(isim)){
+                secilen = u;
+                break;
+            }
+        }
+
+        if (secilen !=null) {
+            System.out.print("1- Satış \n2- Stok Ekle\nSeçim: ");
+            int tercih = Integer.parseInt(scanner.nextLine());
+
+
+            System.out.print("Miktar: ");
+            int miktar = Integer.parseInt(scanner.nextLine());
+
+            if (tercih == 1) {
+                secilen.stokCikar(miktar);
+            } else if (tercih == 2) {
+                secilen.stokEkle(miktar);
+            }else {
+                System.out.println("Geçersiz işlem.");
+            }
+        }else {
+            System.out.println("Ürün bulunamadı.");
+        }
+        }
+
+        public static void kritikStokGoster()  {
+        System.out.println("--- Kritik Stok Ürünleri (<5) ---");
+        boolean bulundu= false;
+        for (Urun u : urunListesi) {
+            if (u.stok<5){
+                System.out.println(u);
+                bulundu = true;
+            }
+        }
+        if (!bulundu){
+            System.out.println("Kritik stokta ürün yok.");
+        }
+        }
+}
